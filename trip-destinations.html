@@ -1,0 +1,53 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+<title>tourist website</title>
+</head>
+
+<header class="header">
+    <span  class="logo" onclick="goToMainPage()">TRIP</span>
+  <!--The trick is create a checkbox with a label, add display:none property to checkbox and modify styles with the pseudoclass :checked-->
+ 
+    
+    <div class="menu">
+        <ul>
+            <li><a href="about-us.html">About us</a></li>
+            <li><a href="trip-destinations.html">Trip destinations</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="book-a-trip.html">Book a trip</a></li>
+        </ul>
+    </div>
+</header>
+
+
+
+<div class="bg">
+  <h1 class="title">Beutiful Ireland</h1>
+</div>
+<body>
+    <main>
+    <div class="picture"> </div>
+    <h2>Something about Ireland</h2>
+</main>
+<footer>
+    <div class="address">
+        <p>Your Company Name</p>
+        <p>123 Main Street</p>
+        <p>City, State 12345</p>
+    </div>
+    <div class="social-icons">
+        <a href="#" target="_blank"><img src="icons\icons8-facebook-50.png" alt="Facebook"></a>
+        <a href="#" target="_blank"><img src="icons\icons8-tiktok-50.png" alt="Twitter"></a>
+        <a href="#" target="_blank"><img src="icons\icons8-instagram-50.png" alt="Instagram"></a>
+        <!-- Add more social media icons as needed -->
+    </div>
+</footer>
+</body>
+<script>
+    function goToMainPage() {
+        // Redirect to the main page
+        window.location.href = "index.html";
+    }
+</script>

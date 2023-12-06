@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .article {
+            border: 2px solid #ddd; /* Increased border size */
+            border-radius: 10px; /* Rounded corners */
+            padding: 15px;
+            margin-bottom: 20px;
+            overflow: hidden; /* Clear the float */
+        }
+
+        .article img {
+            max-width: 100%;
+            height: auto;
+            float: right; /* Float the image to the right */
+            margin: 0 0 10px 10px; /* Add margin for spacing */
+        }
+
+        .expand-btn,
+        .more-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .expanded,
+        .more-text {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="article">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error...</p>
+        <img src="article1.jpg" alt="Article 1 Image">
+        <button class="expand-btn" onclick="expandArticle(this)">Expand</button>
+        <div class="expanded">
+            <p>More text goes here...</p>
+            <p>Additional details...</p>
+        </div>
+        <p class="more-text">
+            <button class="more-btn" onclick="showMoreText(this)">More</button>
+        </p>
+    </div>
+
+    <div class="article">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error...</p>
+        <img src="article2.jpg" alt="Article 2 Image">
+        <button class="expand-btn" onclick="expandArticle(this)">Expand</button>
+        <div class="expanded">
+            <p>More text goes here...</p>
+            <p>Additional details...</p>
+        </div>
+        <p class="more-text">
+            <button class="more-btn" onclick="showMoreText(this)">More</button>
+        </p>
+    </div>
+
+    <!-- Add more articles as needed -->
+
+    <script>
+        function expandArticle(button) {
+            // Toggle the 'expanded' class for the corresponding article
+            var article = button.parentNode;
+            var expandedSection = article.querySelector('.expanded');
+            expandedSection.style.display = (expandedSection.style.display === 'block') ? 'none' : 'block';
+        }
+
+        function showMoreText(button) {
+            // Toggle the 'expanded' class for the corresponding article
+            var article = button.parentNode.parentNode;
+            var moreText = article.querySelector('.more-text');
+            moreText.style.display = (moreText.style.display === 'block') ? 'none' : 'block';
+        }
+    </script>
+
+</body>
+</html>
