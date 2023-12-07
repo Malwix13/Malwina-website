@@ -22,16 +22,45 @@
     </div>
 </header>
 
-
+<body>
 
 <div class="bg">
-  <h1 class="title">Beutiful Ireland</h1>
+  <h1 class="title">Book your trip</h1>
 </div>
-<body>
-    <main>
+
+  
     <div class="picture"> </div>
-    <h2>Something about Ireland</h2>
-</main>
+
+    <div class="store">
+        <div class="store-item">
+            <h3>Product A</h3>
+            <p>$19.99</p>
+            <button onclick="addItemToCart('Product A', 19.99)">Add to Cart</button>
+        </div>
+        <div class="store-item">
+            <h3>Product B</h3>
+            <p>$24.99</p>
+            <button onclick="addItemToCart('Product B', 24.99)">Add to Cart</button>
+        </div>
+        <div class="store-item">
+            <h3>Product C</h3>
+            <p>$14.99</p>
+            <button onclick="addItemToCart('Product C', 14.99)">Add to Cart</button>
+        </div>
+        <!-- Add more store items as needed -->
+    </div>
+    
+    <!-- Shopping Cart -->
+    <div class="cart">
+        <h2>Shopping Cart</h2>
+        <!-- Cart items will be dynamically added here -->
+        <div id="cartItems"></div>
+        <p>Total: $<span id="totalPrice">0.00</span></p>
+        <button class="checkout" onclick="checkout()">Checkout</button>
+    </div>
+  
+
+</body>
 <footer>
     <div class="container">
         <div class="row">
@@ -66,3 +95,67 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    var cartItems = [];
+
+    // Function to add an item to the cart
+    function addItemToCart(name, price) {
+        var cartItemsDiv = document.getElementById('cartItems');
+        var totalPriceSpan = document.getElementById('totalPrice');
+
+        // Add the item to the cart array
+        cartItems.push({ name: name, price: price });
+
+        // Update total price
+        var totalPrice = cartItems.reduce(function (total, item) {
+            return total + item.price;
+        }, 0);
+        totalPriceSpan.innerText = totalPrice.toFixed(2);
+
+        // Update the cart display
+        updateCartDisplay(cartItemsDiv);
+    }
+
+    // Function to remove an item from the cart
+    function removeItem(index, price) {
+        var cartItemsDiv = document.getElementById('cartItems');
+        var totalPriceSpan = document.getElementById('totalPrice');
+
+        // Remove the item from the cart array
+        cartItems.splice(index, 1);
+
+        // Update total price
+        var totalPrice = cartItems.reduce(function (total, item) {
+            return total + item.price;
+        }, 0);
+        totalPriceSpan.innerText = totalPrice.toFixed(2);
+
+        // Update the cart display
+        updateCartDisplay(cartItemsDiv);
+    }
+
+    // Function to update the cart display
+    function updateCartDisplay(cartItemsDiv) {
+        // Clear the existing items in the cart display
+        cartItemsDiv.innerHTML = '';
+
+        // Add each item to the cart display
+        cartItems.forEach(function (item, index) {
+            var cartItemDiv = document.createElement('div');
+            cartItemDiv.className = 'cart-item';
+            cartItemDiv.innerHTML = `<span>${item.name}</span><span>$${item.price.toFixed(2)}</span><button onclick="removeItem(${index}, ${item.price})">Remove</button>`;
+            cartItemsDiv.appendChild(cartItemDiv);
+        });
+    }
+
+    // Function to calculate the total price before checkout
+    function checkout() {
+        var totalPrice = parseFloat(document.getElementById('totalPrice').innerText);
+        if (totalPrice > 0) {
+            alert(`Total price: $${totalPrice.toFixed(2)}. Ready for checkout!`);
+            // You can add more advanced logic here, such as processing the payment.
+        } else {
+            alert('Your cart is empty. Add items before checking out.');
+        }
+    }
+</script>
